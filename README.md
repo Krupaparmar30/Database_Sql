@@ -1,16 +1,23 @@
-# database_sql
+# Database_sql
 
 A new Flutter project.
 
-## Getting Started
+# Employee Details
 
-This project is a starting point for a Flutter application.
+# To Create Table
 
-A few resources to get you started if this is your first Flutter project:
+```bash
+CREATE TABLE "employees" (
+	"id"	INTEGER,
+	"name"	TEXT NOT NULL,
+	"role"	TEXT NOT NULL,
+	"salary"	INTEGER NOT NULL,
+	"age"	INTEGER NOT NULL,
+	"address"	TEXT NOT NULL,
+	"phone"	INTEGER NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
