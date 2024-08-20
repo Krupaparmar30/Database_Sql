@@ -96,6 +96,9 @@ DELETE FROM employees WHERE age<20
 <p>
   <img src="https://github.com/user-attachments/assets/ed3d9684-2e57-4d32-a77f-9a417dd74414" height=28% width=32%>
     <img src="https://github.com/user-attachments/assets/64a1d28f-8d0f-4f26-bfbd-96a6fa7eecea" height=28% width=32%>
+        <img src="https://github.com/user-attachments/assets/1ce80f34-4818-46e2-b4e2-368fbea11fad" height=28% width=32%>
+
+
 
   </p>
 
