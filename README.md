@@ -24,6 +24,10 @@ CREATE TABLE "employees" (
 
 - Field names: id, name, role, salary, age, address, phone.
 - Add a new employee with all the details
+```bash
+  INSERT INTO employees (name,role,salary,age,address,phone) VALUES ("Krupa Parmar","flutter devloper",50000,19,"123,radhe krishna soc,surat",9568532147);
+```
+
 - Add multiple employees with selective data:
 
 ```bash
@@ -35,3 +39,7 @@ INSERT INTO employees (name,role,salary,age,address,phone) VALUES ("Krishna Parm
 INSERT INTO employees (name,role,salary,age,address,phone) VALUES ("Nikita Pithva","webside devloper",40000,23,"5485,shiv shakti soc,vadodra",9668532547);
 INSERT INTO employees (name,role,salary,age,address,phone) VALUES ("Sneha Panchal","flutter devloper",48000,24,"155,starcity soc,surat",9568532147);
 ```
+
+# Read a data
+
+- Retrieve all employee information:
