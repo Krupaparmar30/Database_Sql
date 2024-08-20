@@ -43,3 +43,52 @@ INSERT INTO employees (name,role,salary,age,address,phone) VALUES ("Sneha Pancha
 # Read a data
 
 - Retrieve all employee information:
+  
+```bash
+SELECT * FROM employees;
+```
+# Get specific columns for all employees (e.g., name, salary)
+
+```bash
+SELECT name,salary FROM employees WHERE name=name;
+```
+# Find employees with a particular role (e.g., Manager):
+
+```bash
+SELECT name,role FROM employees WHERE role="flutter devloper";
+```
+
+# Search for employees with names containing "An" (case-insensitive):
+
+```bash
+SELECT name FROM employees WHERE name LIKE 'k%';
+```
+
+# Find employees older than 20 and earning more than 20,000:
+
+```bash
+SELECT * FROM employees WHERE (salary > 20000) AND age>=20;
+```
+# Change the salary of an employee with ID 5:
+
+```bash
+UPDATE employees 
+SET salary=14780000
+WHERE id = 5
+```
+# Update the address for employees in the 'Sales' role:
+
+```bash
+UPDATE employees
+SET address = '152,royal plaza,surat'
+WHERE role="webside devloper";
+```
+# Remove an employee with ID 101:
+
+```bash
+DELETE FROM employees WHERE id=4
+```
+# Delete all employees under 20 (assuming it's not a valid age).
+```bash
+DELETE FROM employees WHERE age<20
+```
