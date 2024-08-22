@@ -36,14 +36,16 @@ class DbHelper {
     return _db;
   }
 
-  Future<void> insertData() async {
+  Future<void> insertData(String amount,String isIncome,String category) async {
     Database? db =await database;
 
     String sql='''
     INSERT INTO finance
-    (amount,isIncome,category) VALUES (201,0,"Krishna");
+    (amount,isIncome,category) VALUES (?,?,?);
     
     ''';
-    await db!.rawInsert(sql);
+    await db!.rawInsert(sql,[amount,isIncome,category]);
   }
+
+
 }

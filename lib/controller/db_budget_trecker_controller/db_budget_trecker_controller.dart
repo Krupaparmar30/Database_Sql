@@ -13,7 +13,9 @@ class HomeController extends GetxController {
     await DbHelper.dbHelper.database;
   }
 
-  Future<void> insertRecord() async {
-    await DbHelper.dbHelper.insertData();
+  Future<void> insertRecord(String amount,String isIncome,String category) async {
+    await DbHelper.dbHelper.insertData(amount,isIncome,category);
   }
+
+
 }
