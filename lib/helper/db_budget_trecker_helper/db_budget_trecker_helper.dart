@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -9,6 +10,7 @@ class DbHelper {
   Database? _db;
 
   Future<Database?> get database async => _db ?? await initDatabase();
+
 
   //init database-create table
 
@@ -36,7 +38,7 @@ class DbHelper {
     return _db;
   }
 
-  Future<void> insertData(String amount,String isIncome,String category) async {
+  Future<int> insertData(double amount,int isIncome,String category) async {
     Database? db =await database;
 
     String sql='''
@@ -44,8 +46,44 @@ class DbHelper {
     (amount,isIncome,category) VALUES (?,?,?);
     
     ''';
-    await db!.rawInsert(sql,[amount,isIncome,category]);
+    List args=[amount,isIncome,category];
+    return await db!.rawInsert(sql,args);
   }
 
+  Future<List<Map<String, Object?>>> readData()
+  async {
+    Database? db=await  database;
+    String sql='''
+    
+    SELECT * FROM finance
+    
+    ''';
+    return await db!.rawQuery(sql);
+  }
+  Future<void> deleteData(int id)
+  async {
+    Database? db=await database;
+
+    String sql='''
+    DELETE FROM finance WHERE id=?;
+    
+    ''';
+    List args=[id];
+    await db!.rawDelete(sql,args);
+
+  }
+
+
+
+  Future<void> updateData(int id,double amount ,int isIncome,String category)
+  async {
+    Database? db=await database;
+    String sql='''
+    
+    UPDATE finance SET amount=? ,isIncome=?,category=? WHERE id=?;
+    ''';
+    List args=[amount,isIncome,category,id];
+    await db!.rawUpdate(sql,args);
+  }
 
 }
