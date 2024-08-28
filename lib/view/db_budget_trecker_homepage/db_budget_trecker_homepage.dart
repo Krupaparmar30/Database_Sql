@@ -83,23 +83,7 @@ class homePage extends StatelessWidget {
                                                             decoration: InputDecoration(
                                                                 labelText: "Enter catagroy"),
                                                           ),
-                                                          // Obx(() =>
-                                                          //     SwitchListTile(
-                                                          //       activeTrackColor:
-                                                          //       Colors.green
-                                                          //           .shade600,
-                                                          //       title: const Text(
-                                                          //           'Income'),
-                                                          //       value: controller
-                                                          //           .isIncome
-                                                          //           .value,
-                                                          //       onChanged: (
-                                                          //           value) {
-                                                          //         controller
-                                                          //             .setIncome(
-                                                          //             value);
-                                                          //       },
-                                                          //     ),)
+                                                        \
                                                     Obx(
                                                           () => SwitchListTile(
                                                         activeColor: Colors.green,
