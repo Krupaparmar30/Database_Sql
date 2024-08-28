@@ -6,16 +6,13 @@ import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 
 class HomeController extends GetxController {
-RxDouble totalIncome=0.0.obs;
-RxDouble totalEX=0.0.obs;
-
-  RxList data=[].obs;
-  RxBool isIncome=false.obs;
+  RxList data = [].obs;
+  RxBool isIncome = false.obs;
+  RxDouble totalIncome = 0.0.obs;
+  RxDouble totalEX = 0.0.obs;
 
   TextEditingController amountController = TextEditingController();
   TextEditingController catController = TextEditingController();
-
-
 
   @override
   void onInit() {
@@ -24,55 +21,41 @@ RxDouble totalEX=0.0.obs;
     initDb();
   }
 
-void setIncome(bool value)
-{
-  isIncome.value=value;
-}
+  void setIncome(bool value) {
+    isIncome.value = value;
+  }
 
-
-
-
-  Future<void> initDb() async {
+  Future initDb() async {
     await DbHelper.dbHelper.database;
     await getRecords();
   }
 
-  Future<void> insertRecord(
-      double amount, int isIncome, String category) async {
+  Future insertRecord(double amount, int isIncome, String category) async {
     await DbHelper.dbHelper.insertData(amount, isIncome, category);
-    getRecords();
+    await getRecords();
   }
-  Future<RxList> getRecords()
-  async {
-    totalIncome.value=0.0;
-    totalEX.value=0.0;
-    data.value=await DbHelper.dbHelper.readData();
-    for(var i in data)
-      {
-        if(i["isIncome"]==1)
-          {
-            totalIncome.value=totalIncome.value+i['amount'];
 
-          }
-        else
-          {
-            totalEX.value=totalEX.value+i['amount'];
-          }
+  Future updateRecords(
+      int id, double amount, int isIncome, String category) async {
+    await DbHelper.dbHelper.updateData(id, amount, isIncome, category);
+    await getRecords();
+  }
+
+  Future getRecords() async {
+    totalIncome.value = 0.0;
+    totalEX.value = 0.0;
+    data.value = await DbHelper.dbHelper.readData();
+    for (var i in data) {
+      if (i['isIncome'] == 1) {
+        totalIncome.value = totalIncome.value + i['amount'];
+      } else {
+        totalEX.value = totalEX.value + i['amount'];
       }
-    return data;
-
+    }
   }
 
-
-  Future<void> removeRecords(int id)
-  async {
-   await  DbHelper.dbHelper.deleteData(id);
-   await getRecords();
+  Future removeRecords(int id) async {
+    await DbHelper.dbHelper.deleteData(id);
+    await getRecords();
   }
-  Future<void> updateRecords(int id,double amount ,int isIncome,String category)
-  async {
-   await  DbHelper.dbHelper.updateData(id,amount,isIncome,category);
-   await getRecords();
-  }
-
 }

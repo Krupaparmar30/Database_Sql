@@ -9,12 +9,12 @@ class DbHelper {
 
   Database? _db;
 
-  Future<Database?> get database async => _db ?? await initDatabase();
+  Future get database async => _db ?? await initDatabase();
 
 
   //init database-create table
 
-  Future<Database?> initDatabase() async {
+  Future initDatabase() async {
     //1.create path to store database
     final path = await getDatabasesPath();
     final dbpath = join(path, 'finance.db');
@@ -28,17 +28,15 @@ class DbHelper {
      id INTEGER PRIMARY KEY AUTOINCREMENT ,
      amount REAL NOT NULL,
      isIncome INTEGER NOT NULL,
-     category TEXT );
-   
-     
-     ''';
+     category TEXT);
+    ''';
         await db.execute(sql);
       },
     );
     return _db;
   }
 
-  Future<int> insertData(double amount,int isIncome,String category) async {
+  Future insertData(double amount,int isIncome,String category) async {
     Database? db =await database;
 
     String sql='''
@@ -47,10 +45,10 @@ class DbHelper {
     
     ''';
     List args=[amount,isIncome,category];
-    return await db!.rawInsert(sql,args);
+     await db!.rawInsert(sql,args);
   }
 
-  Future<List<Map<String, Object?>>> readData()
+  Future<List<Map>> readData()
   async {
     Database? db=await  database;
     String sql='''
@@ -60,12 +58,12 @@ class DbHelper {
     ''';
     return await db!.rawQuery(sql);
   }
-  Future<void> deleteData(int id)
+  Future deleteData(int id)
   async {
     Database? db=await database;
 
     String sql='''
-    DELETE FROM finance WHERE id=?;
+    DELETE FROM finance WHERE id=?
     
     ''';
     List args=[id];
@@ -75,12 +73,12 @@ class DbHelper {
 
 
 
-  Future<void> updateData(int id,double amount ,int isIncome,String category)
+  Future updateData(int id,double amount ,int isIncome,String category)
   async {
     Database? db=await database;
     String sql='''
     
-    UPDATE finance SET amount=? ,isIncome=?,category=? WHERE id=?;
+    UPDATE finance SET amount=? ,isIncome=?,category=? WHERE id=?
     ''';
     List args=[amount,isIncome,category,id];
     await db!.rawUpdate(sql,args);
